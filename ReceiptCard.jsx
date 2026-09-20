@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React, { useRef } from 'react';
 import { 
   ShoppingBag, 
   MapPin, 
@@ -27,10 +27,28 @@ const FACET_ICONS = {
 
 export default function ReceiptCard({ receipt, onInspect }) {
   const Icon = FACET_ICONS[receipt.facet] || Receipt;
+  const cardRef = useRef(null);
 
   const handleClick = () => {
     playThermalPrintSound();
     onInspect(receipt);
+  };
+
+  const handlePointerMove = (event) => {
+    const card = cardRef.current;
+    if (!card || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const bounds = card.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+    const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+    card.style.setProperty('--tilt-x', `${y * -5}deg`);
+    card.style.setProperty('--tilt-y', `${x * 5}deg`);
+  };
+
+  const resetTilt = () => {
+    const card = cardRef.current;
+    if (!card) return;
+    card.style.setProperty('--tilt-x', '0deg');
+    card.style.setProperty('--tilt-y', '0deg');
   };
 
   const getStampClasses = (stamp) => {
@@ -43,8 +61,11 @@ export default function ReceiptCard({ receipt, onInspect }) {
 
   return (
     <div 
+      ref={cardRef}
       onClick={handleClick}
-      className="group relative cursor-pointer transform transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-amber-500/10"
+      onPointerMove={handlePointerMove}
+      onPointerLeave={resetTilt}
+      className="receipt-card group relative cursor-pointer transform-gpu transition-[transform,box-shadow] duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-amber-500/10"
     >
       {/* Physical Thermal Paper Shell */}
       <div className="relative bg-[#faf7f2] text-zinc-800 rounded-t-sm shadow-md border border-[#e5dfd5] p-4 flex flex-col justify-between font-mono-receipt select-none overflow-hidden min-h-[290px]">

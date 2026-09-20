@@ -18,6 +18,7 @@ import {
   RotateCcw
 } from 'lucide-react';
 import ReceiptCard from './ReceiptCard';
+import ScrollReveal from '../ScrollReveal';
 import { formatCurrency } from '../utils/formatters';
 import { playClickSound } from '../utils/soundEffects';
 
@@ -341,12 +342,13 @@ export default function ThermalRollView({ receipts = [], onInspect }) {
       ) : viewLayout === 'grid' ? (
         /* Grid Mode */
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {paginatedReceipts.map((receipt) => (
-            <ReceiptCard 
-              key={receipt.id} 
-              receipt={receipt} 
-              onInspect={onInspect} 
-            />
+          {paginatedReceipts.map((receipt, index) => (
+            <ScrollReveal key={receipt.id} index={index % 12}>
+              <ReceiptCard
+                receipt={receipt}
+                onInspect={onInspect}
+              />
+            </ScrollReveal>
           ))}
         </div>
       ) : (
