@@ -121,7 +121,7 @@ export default function Header({
               </span>
             </div>
             <p className="text-xs text-slate-400">
-              Your Life, In Receipts • <span className="text-slate-300 italic">Raw Data → Connections → Story</span>
+              Transforming life logs, digital footprints, and historical receipts into an interactive life narrative.
             </p>
           </div>
         </div>

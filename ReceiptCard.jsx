@@ -25,7 +25,7 @@ const FACET_ICONS = {
   Career: Coins
 };
 
-export default function ReceiptCard({ receipt, onInspect }) {
+function ReceiptCard({ receipt, onInspect }) {
   const Icon = FACET_ICONS[receipt.facet] || Receipt;
   const cardRef = useRef(null);
 
@@ -159,3 +159,5 @@ export default function ReceiptCard({ receipt, onInspect }) {
     </div>
   );
 }
+
+export default React.memo(ReceiptCard);

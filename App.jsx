@@ -114,7 +114,7 @@ export default function App() {
                     Turn everyday spending into a story.
                   </h2>
                   <p className="mt-4 max-w-xl text-sm leading-6 text-slate-300 sm:text-base">
-                    Receiptify connects purchases, places, music, and milestones so you can see the human pattern hidden inside your archive.
+                    Receiptify connects purchases, places, music, library checkouts, commit logs, boarding passes, and milestones so you can see the human pattern hidden inside your archive.
                   </p>
                 </div>
                 <button

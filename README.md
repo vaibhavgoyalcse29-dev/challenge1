@@ -24,7 +24,7 @@ We leave digital breadcrumbs everywhere—transactions, subscriptions, rides, an
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** React, Vite
+- **Frontend:** React 19, Vite
 - **Styling:** Tailwind CSS, Glassmorphism UI
 - **Motion:** Framer Motion and Lenis
 - **Icons:** Lucide React

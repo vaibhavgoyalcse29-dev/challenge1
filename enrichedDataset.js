@@ -13,6 +13,12 @@ const additions = [
   ['rcpt-extra-10', '2018-09-10T06:55:00.000Z', 'Mobile data utility recharge', 349, 'Purchases', 'Utilities', 'Telecom'],
   ['rcpt-extra-11', '2018-09-09T22:30:00.000Z', 'YouTube Music subscription', 129, 'Entertainment', 'Streaming', 'YouTube Music'],
   ['rcpt-extra-12', '2018-09-08T08:35:00.000Z', 'Parents household transfer', 5000, 'Family', 'Family support', 'Bank transfer']
+  ,['life-log-1', '2018-09-07T10:10:00.000Z', 'Library checkout: Designing Data-Intensive Applications', 0, 'Career', 'Library checkout', 'City library'],
+  ['life-log-2', '2018-09-06T23:58:00.000Z', 'GitHub commit streak: receipt story prototype', 0, 'Career', 'GitHub commit', 'GitHub'],
+  ['life-log-3', '2018-09-05T06:20:00.000Z', 'Boarding pass: Mumbai to Vadodara', 0, 'Places', 'Flight boarding pass', 'IndiGo'],
+  ['life-log-4', '2018-09-04T16:35:00.000Z', 'Coffee log: cutting chai before deployment', 45, 'Places', 'Coffee log', 'Local chai stall'],
+  ['life-log-5', '2018-09-03T20:15:00.000Z', 'GitHub commit: constellation connection engine', 0, 'Career', 'GitHub commit', 'GitHub'],
+  ['life-log-6', '2018-09-02T12:40:00.000Z', 'Library checkout: The Art of Statistics', 0, 'Career', 'Library checkout', 'City library']
 ].map(([id, date, note, amount, facet, subcategory, merchant]) => ({
   id,
   date,
@@ -23,7 +29,7 @@ const additions = [
   subcategory,
   note,
   amount,
-  type: 'expense',
+  type: amount ? 'expense' : 'activity',
   currency: 'INR',
   facet,
   mood: facet === 'Family' ? 'Devotion' : facet === 'Entertainment' ? 'Late Night Hustle' : 'Growth',
