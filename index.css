@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --receipt-paper: #faf8f5;
+    --receipt-ink: #1a1918;
+    --receipt-mute: #736b63;
+    --receipt-border: #e2ddd3;
+    --receipt-accent: #d97706;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0b0f17;
+  color: #f3f4f6;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #111827;
+}
+::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4b5563;
+}
+
+/* Jagged Serrated Thermal Paper Edge */
+.serrated-edge-top {
+  background-image: radial-gradient(circle at 10px -5px, transparent 12px, #faf8f5 13px);
+  background-size: 20px 20px;
+}
+
+.serrated-edge-bottom {
+  position: relative;
+}
+.serrated-edge-bottom::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: linear-gradient(135deg, transparent 5px, #faf8f5 5px),
+              linear-gradient(225deg, transparent 5px, #faf8f5 5px);
+  background-size: 14px 10px;
+  background-repeat: repeat-x;
+}
+
+.serrated-edge-bottom-dark::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: linear-gradient(135deg, transparent 5px, #18181b 5px),
+              linear-gradient(225deg, transparent 5px, #18181b 5px);
+  background-size: 14px 10px;
+  background-repeat: repeat-x;
+}
+
+/* Thermal Paper Texture Filter */
+.receipt-paper-texture {
+  background-color: #faf7f2;
+  background-image: radial-gradient(#ece4d8 1px, transparent 0);
+  background-size: 16px 16px;
+}
+
+/* Rubber Stamp Styling */
+.stamp {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  border: 2px dashed;
+  border-radius: 4px;
+  mask-image: radial-gradient(circle, rgba(0,0,0,1) 85%, rgba(0,0,0,0.6) 100%);
+  transform: rotate(-4deg);
+}
+
+.stamp-green {
+  color: #047857;
+  border-color: #059669;
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.stamp-amber {
+  color: #b45309;
+  border-color: #d97706;
+  background: rgba(245, 158, 11, 0.08);
+}
+
+.stamp-red {
+  color: #b91c1c;
+  border-color: #dc2626;
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.stamp-purple {
+  color: #7c3aed;
+  border-color: #8b5cf6;
+  background: rgba(139, 92, 246, 0.08);
+}
+
+/* Monospace font utilities */
+.font-mono-receipt {
+  font-family: 'Courier New', Courier, monospace, ui-monospace;
+  letter-spacing: -0.02em;
+}
+
+/* CRT / Tape Glow Effect */
+.glow-amber {
+  box-shadow: 0 0 25px -5px rgba(245, 158, 11, 0.35);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.35);
+}
+
