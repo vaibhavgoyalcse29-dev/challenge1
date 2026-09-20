@@ -22,6 +22,15 @@ export default function ConstellationGraph({ onInspectReceipt }) {
 
   // Active story thread
   const currentThread = CONNECTION_THREADS.find(t => t.id === selectedThreadId) || CONNECTION_THREADS[0];
+  const connectedNodes = activeNode
+    ? currentThread.links
+      .filter(link => link.source === activeNode.id || link.target === activeNode.id)
+      .map(link => {
+        const otherId = link.source === activeNode.id ? link.target : link.source;
+        return { node: currentThread.nodes.find(node => node.id === otherId), label: link.label };
+      })
+      .filter(connection => connection.node)
+    : [];
 
   // Simulation state for nodes
   const nodesRef = useRef([]);
@@ -439,6 +448,18 @@ export default function ConstellationGraph({ onInspectReceipt }) {
                   }
                 </p>
               </div>
+
+              {connectedNodes.length > 0 && (
+                <div className="pt-2 border-t border-dashed border-zinc-400 space-y-2">
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-500">Secret connections detected</p>
+                  {connectedNodes.slice(0, 3).map(({ node, label }) => (
+                    <div key={node.id} className="flex items-start gap-2 rounded-md bg-amber-100/70 px-2 py-1.5 text-[10px] leading-snug text-zinc-700">
+                      <span aria-hidden="true">⚡</span>
+                      <span><strong>{label}:</strong> {node.label}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           ) : (
             <div className="bg-slate-900/40 border border-dashed border-slate-800 rounded-xl p-6 text-center text-xs text-slate-500">

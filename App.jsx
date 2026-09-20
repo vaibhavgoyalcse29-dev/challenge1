@@ -1,5 +1,6 @@
 ﻿import React, { useState } from 'react';
 import Header from './components/Header';
+import CinematicReplay from './components/CinematicReplay';
 import ThermalRollView from './components/ThermalRollView';
 import ConstellationGraph from './components/ConstellationGraph';
 import StoryScrapbook from './components/StoryScrapbook';
@@ -14,6 +15,7 @@ export default function App() {
   const [receipts, setReceipts] = useState(defaultDataset);
   const [inspectedReceipt, setInspectedReceipt] = useState(null);
   const [isCustomData, setIsCustomData] = useState(false);
+  const [isReplayOpen, setIsReplayOpen] = useState(false);
 
   const handleCustomDataLoaded = (newReceipts) => {
     setReceipts(newReceipts);
@@ -36,6 +38,24 @@ export default function App() {
         onResetData={handleResetData}
         isCustomData={isCustomData}
       />
+
+      <div className="border-y border-purple-500/20 bg-gradient-to-r from-purple-900/30 via-indigo-900/20 to-pink-900/30 px-4 py-3">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-center gap-3 text-center sm:flex-row">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-purple-400 opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-purple-500" />
+          </span>
+          <span className="text-xs font-medium text-slate-300 sm:text-sm">
+            Dataset analysis complete: <strong className="text-purple-300">4 life chapters and cross-domain connections discovered.</strong>
+          </span>
+          <button
+            onClick={() => setIsReplayOpen(true)}
+            className="rounded-lg border border-purple-400/40 bg-purple-500/10 px-3 py-1.5 text-xs font-bold text-purple-300 transition hover:bg-purple-500/20"
+          >
+            ▶ Start Memory Replay
+          </button>
+        </div>
+      </div>
 
       {/* Main Content Area */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6">
@@ -89,6 +109,13 @@ export default function App() {
             setInspectedReceipt(null);
             setCurrentMode('constellation');
           }}
+        />
+      )}
+
+      {isReplayOpen && (
+        <CinematicReplay
+          onExit={() => setIsReplayOpen(false)}
+          onOpenStory={() => setCurrentMode('story')}
         />
       )}
 

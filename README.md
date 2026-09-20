@@ -3,6 +3,15 @@
 
 Built for the **"Your Life, In Receipts"** frontend hackathon challenge.
 
+## ✨ Vision
+RECEIPTIFY transforms raw, disconnected CSV logs into an interactive digital museum of human habit. Every purchase, song, commute, and message becomes evidence in a living story rather than another static dashboard.
+
+## 🏆 How We Solved the Challenge
+The app cross-references financial transactions with music streaming history, places, searches, photos, messages, and life events. Its Connection Constellation makes those relationships explicit, while Memory Replay turns the four discovered chapters into a cinematic guided experience for judges and users.
+
+## 🔗 Live Demo
+[Launch the deployed RECEIPTIFY experience](https://receiptify-final-2026.vercel.app)
+
 ---
 
 ## 🌟 The Core Breakthrough: Moving Beyond Timelines
