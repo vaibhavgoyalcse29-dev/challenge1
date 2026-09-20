@@ -1,0 +1,4 @@
+{
+  "buildCommand": "node vercel-build.cjs && vite build",
+  "outputDirectory": "dist"
+}
