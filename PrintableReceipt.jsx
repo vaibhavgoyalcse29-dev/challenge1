@@ -69,7 +69,7 @@ export default function PrintableReceipt({ receipts = [] }) {
   };
 
   return (
-    <section className="space-y-6 animate-in fade-in duration-300">
+    <section className="printable-receipt-view space-y-6 animate-in fade-in duration-300">
       {/* Configuration Header */}
       <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>

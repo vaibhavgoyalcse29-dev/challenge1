@@ -399,6 +399,11 @@ body,
   color: #94a3b8;
   font: 0.75rem/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
 }
+
+/* Keep the paper preview clear of the left edge on narrow layouts. */
+.printable-receipt-view {
+  padding-left: clamp(0.25rem, 2vw, 1.25rem);
+}
 .welcome-backdrop {
   position: fixed;
   inset: 0;
