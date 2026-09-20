@@ -161,7 +161,7 @@ export function toggleAmbientAtmosphere(enable) {
           ambientOsc1 = null;
           ambientOsc2 = null;
           ambientGain = null;
-        } catch (e) {}
+        } catch {}
       }, 1050);
     }
     return false;
@@ -170,7 +170,7 @@ export function toggleAmbientAtmosphere(enable) {
   try {
     if (ambientOsc1) ambientOsc1.stop();
     if (ambientOsc2) ambientOsc2.stop();
-  } catch (e) {}
+  } catch {}
 
   ambientOsc1 = ctx.createOscillator();
   ambientOsc2 = ctx.createOscillator();

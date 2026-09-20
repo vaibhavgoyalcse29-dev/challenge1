@@ -1,28 +1,37 @@
-﻿import React, { useState, useEffect, useRef } from 'react';
+import React, { lazy, Suspense, useState, useEffect, useRef } from 'react';
 import Lenis from '@studio-freight/lenis';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import Header from './components/Header';
+import Navbar from './components/Navbar';
+import DatasheetVault from './components/DatasheetVault';
+import ConstellationMap from './components/ConstellationMap';
+import StoryChapters from './components/StoryChapters';
+import AiSynthesizerModal from './components/AiSynthesizerModal';
 import CinematicReplay from './components/CinematicReplay';
-import ThermalRollView from './components/ThermalRollView';
-import ConstellationGraph from './components/ConstellationGraph';
-import StoryScrapbook from './components/StoryScrapbook';
-import LifeAuditor from './components/LifeAuditor';
-import PrintableReceipt from './components/PrintableReceipt';
-import DatasetUploader from './components/DatasetUploader';
 import ReceiptModal from './components/ReceiptModal';
 import MemoryCursor from './components/MemoryCursor';
 import PatternLab from './components/PatternLab';
 import AnalyticsSummary from './components/AnalyticsSummary';
 import GuidedTour from './components/GuidedTour';
-import defaultDataset from './data/enrichedDataset';
 
 import ParallaxBackground from './ParallaxBackground';
 import './glass-parallax.css';
 
+const loadDefaultDataset = () => import('./data/enrichedDataset').then(({ default: dataset }) => dataset);
+
+const PrintableReceipt = lazy(() => import('./components/PrintableReceipt'));
+const DatasetUploader = lazy(() => import('./components/DatasetUploader'));
+
+const ViewFallback = () => (
+  <div className="flex min-h-[280px] items-center justify-center rounded-2xl border border-slate-800 bg-slate-900/70 p-8 text-sm text-slate-400" role="status">
+    Loading archive view…
+  </div>
+);
+
 export default function App() {
   const [currentMode, setCurrentMode] = useState('roll'); // 'roll', 'constellation', 'story', 'auditor', 'print', 'upload'
-  const [receipts, setReceipts] = useState(defaultDataset);
+  const [receipts, setReceipts] = useState([]);
+  const [isDatasetLoading, setIsDatasetLoading] = useState(true);
   const [inspectedReceipt, setInspectedReceipt] = useState(null);
   const [isCustomData, setIsCustomData] = useState(false);
   const [isReplayOpen, setIsReplayOpen] = useState(false);
@@ -49,6 +58,19 @@ export default function App() {
     return () => lenis.destroy();
   }, []);
 
+  useEffect(() => {
+    let active = true;
+    loadDefaultDataset().then((dataset) => {
+      if (active) {
+        setReceipts(dataset);
+        setIsDatasetLoading(false);
+      }
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
+
   // Snap scroll to top (via Lenis) whenever the mode changes, so a long
   // scrolled-down Roll view doesn't leave you mid-page after switching tabs
   useEffect(() => {
@@ -62,8 +84,10 @@ export default function App() {
   };
 
   const handleResetData = () => {
-    setReceipts(defaultDataset);
-    setIsCustomData(false);
+    loadDefaultDataset().then((dataset) => {
+      setReceipts(dataset);
+      setIsCustomData(false);
+    });
   };
 
   return (
@@ -75,7 +99,7 @@ export default function App() {
 
       <div className="relative z-10 flex flex-col min-h-screen">
         {/* Global Header */}
-        <Header
+        <Navbar
           currentMode={currentMode}
           setCurrentMode={setCurrentMode}
           totalReceipts={receipts.length}
@@ -155,6 +179,12 @@ export default function App() {
               </div>
             </section>
           )}
+          {isDatasetLoading && (
+            <div className="mb-6 flex items-center gap-3 rounded-2xl border border-amber-300/20 bg-amber-400/5 px-4 py-3 text-sm text-amber-100" role="status">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-amber-300" />
+              Loading your life archive locally…
+            </div>
+          )}
           {currentMode === 'roll' && <PatternLab onModeChange={setCurrentMode} />}
           {currentMode === 'roll' && <AnalyticsSummary receipts={receipts} />}
 
@@ -166,27 +196,28 @@ export default function App() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.35, ease: 'easeOut' }}
             >
-              {currentMode === 'roll' && (
-                <ThermalRollView
+              <Suspense fallback={<ViewFallback />}>
+                {currentMode === 'roll' && (
+                <DatasheetVault
                   receipts={receipts}
                   onInspect={setInspectedReceipt}
                 />
               )}
 
               {currentMode === 'constellation' && (
-                <ConstellationGraph
+                <ConstellationMap
                   onInspectReceipt={setInspectedReceipt}
                 />
               )}
 
               {currentMode === 'story' && (
-                <StoryScrapbook
+                <StoryChapters
                   onInspectReceipt={setInspectedReceipt}
                 />
               )}
 
               {currentMode === 'auditor' && (
-                <LifeAuditor
+                <AiSynthesizerModal
                   receipts={receipts}
                 />
               )}
@@ -205,6 +236,7 @@ export default function App() {
                   currentCount={receipts.length}
                 />
               )}
+              </Suspense>
             </motion.div>
           </AnimatePresence>
         </main>

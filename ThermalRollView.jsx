@@ -135,6 +135,7 @@ export default function ThermalRollView({ receipts = [], onInspect }) {
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input
               type="text"
+              aria-label="Search life receipts"
               placeholder="Search receipts, cutting chai, marathon, eye clinic, songs, Vadodara..."
               value={searchTerm}
               onChange={(e) => {
@@ -147,6 +148,7 @@ export default function ThermalRollView({ receipts = [], onInspect }) {
               <button 
                 onClick={() => setSearchTerm('')}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-white"
+                aria-label="Clear receipt search"
               >
                 Clear
               </button>
@@ -179,6 +181,7 @@ export default function ThermalRollView({ receipts = [], onInspect }) {
                   setViewLayout('grid');
                 }}
                 title="Grid Layout"
+                aria-label="Show receipt grid"
                 className={`p-1.5 rounded-lg text-xs transition-colors ${
                   viewLayout === 'grid' ? 'bg-amber-500/20 text-amber-400' : 'text-slate-400 hover:text-white'
                 }`}
@@ -191,6 +194,7 @@ export default function ThermalRollView({ receipts = [], onInspect }) {
                   setViewLayout('tape');
                 }}
                 title="Continuous Thermal Tape Spool"
+                aria-label="Show continuous receipt tape"
                 className={`p-1.5 rounded-lg text-xs transition-colors ${
                   viewLayout === 'tape' ? 'bg-amber-500/20 text-amber-400' : 'text-slate-400 hover:text-white'
                 }`}

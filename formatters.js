@@ -1,4 +1,4 @@
-﻿export function formatCurrency(amount, currency = 'INR') {
+export function formatCurrency(amount, _currency = 'INR') {
   if (amount === undefined || amount === null) return '₹0';
   const num = Math.round(Number(amount));
   return '₹' + num.toLocaleString('en-IN');

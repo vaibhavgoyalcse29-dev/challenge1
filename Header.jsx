@@ -127,7 +127,7 @@ export default function Header({
         </div>
 
         {/* Mode Selector Buttons */}
-        <nav className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none">
+        <nav className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 scrollbar-none" aria-label="Life archive views">
           {modes.map((mode) => {
             const Icon = mode.icon;
             const isActive = currentMode === mode.id;
@@ -143,6 +143,8 @@ export default function Header({
                     ? 'bg-amber-500/15 border-amber-500/40 text-amber-300 shadow-[0_0_15px_-3px_rgba(245,158,11,0.25)]'
                     : 'bg-slate-900/60 border-slate-800/80 text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
                 }`}
+                aria-current={isActive ? 'page' : undefined}
+                aria-label={`${mode.label}, ${mode.badge}`}
               >
                 <Icon className={`w-3.5 h-3.5 transition-transform group-hover:scale-110 ${
                   isActive ? 'text-amber-400' : 'text-slate-400'
