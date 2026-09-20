@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Clapperboard, Pause, Play, SkipForward, X } from 'lucide-react';
+import { CheckCircle2, Clapperboard, Pause, Play, SkipForward, X } from 'lucide-react';
 import { STORY_CHAPTERS } from '../data/storyChapters';
 import { playBellChime, playClickSound } from '../utils/soundEffects';
 
@@ -35,6 +35,11 @@ export default function CinematicReplay({ onExit, onOpenStory }) {
   const advance = () => {
     playClickSound();
     setChapterIndex((current) => Math.min(current + 1, STORY_CHAPTERS.length - 1));
+  };
+
+  const finishReplay = () => {
+    playClickSound();
+    onExit();
   };
 
   return (
@@ -96,8 +101,19 @@ export default function CinematicReplay({ onExit, onOpenStory }) {
             {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
             {isPlaying ? 'Pause replay' : 'Resume replay'}
           </button>
-          <button onClick={advance} disabled={chapterIndex === STORY_CHAPTERS.length - 1} className="flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-mono text-slate-300 hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-40">
-            Next chapter <SkipForward className="w-3.5 h-3.5" />
+          <button
+            onClick={chapterIndex === STORY_CHAPTERS.length - 1 ? finishReplay : advance}
+            className={`flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-mono transition ${
+              chapterIndex === STORY_CHAPTERS.length - 1
+                ? 'bg-emerald-400 font-bold text-slate-950 hover:bg-emerald-300'
+                : 'text-slate-300 hover:bg-slate-800'
+            }`}
+          >
+            {chapterIndex === STORY_CHAPTERS.length - 1 ? (
+              <>Finish replay <CheckCircle2 className="w-3.5 h-3.5" /></>
+            ) : (
+              <>Next chapter <SkipForward className="w-3.5 h-3.5" /></>
+            )}
           </button>
         </div>
       </div>
