@@ -12,6 +12,7 @@ import PrintableReceipt from './components/PrintableReceipt';
 import DatasetUploader from './components/DatasetUploader';
 import ReceiptModal from './components/ReceiptModal';
 import MemoryCursor from './components/MemoryCursor';
+import PatternLab from './components/PatternLab';
 import defaultDataset from './data/dataset.json';
 
 import ParallaxBackground from './ParallaxBackground';
@@ -145,6 +146,7 @@ export default function App() {
               </div>
             </section>
           )}
+          {currentMode === 'roll' && <PatternLab onModeChange={setCurrentMode} />}
 
           <AnimatePresence mode="wait">
             <motion.div
