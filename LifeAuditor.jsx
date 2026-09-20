@@ -13,11 +13,13 @@ import {
 } from 'lucide-react';
 import { calculateForensicInsights } from '../data/dataInsights';
 import { formatCurrency } from '../utils/formatters';
+import { synthesizeBehavior } from '../data/behavioralSynthesizer';
 
 export default function LifeAuditor({ receipts = [] }) {
   const insights = useMemo(() => {
     return calculateForensicInsights(receipts);
   }, [receipts]);
+  const behavior = useMemo(() => synthesizeBehavior(receipts), [receipts]);
 
   // Max hour for normalisation
   const maxHourVal = Math.max(...insights.hourDistribution, 1);
@@ -127,6 +129,17 @@ export default function LifeAuditor({ receipts = [] }) {
         </div>
       </div>
 
+      <div className="rounded-2xl border border-cyan-400/20 bg-gradient-to-br from-cyan-500/10 via-slate-900 to-purple-500/10 p-6 shadow-xl">
+        <div className="flex items-center gap-2 text-cyan-300">
+          <Sparkles className="h-4 w-4" />
+          <h3 className="font-mono text-sm font-bold">AI Behavioral Synthesizer</h3>
+          <span className="ml-auto rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2 py-1 font-mono text-[10px] text-emerald-300">DYNAMIC / LOCAL</span>
+        </div>
+        <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-300">
+          Across <b className="text-white">{behavior.totalRecords.toLocaleString('en-IN')}</b> indexed moments, your most frequent rhythm is <b className="text-amber-300">{behavior.topCategory}</b> ({behavior.topCategoryCount} records). Activity peaks at <b className="text-cyan-300">{behavior.peakWindow}</b>, while <b className="text-purple-300">{behavior.connectedRecords.toLocaleString('en-IN')}</b> moments connect to music, places, or messages. This synthesis updates from the records currently loaded in the browser.
+        </p>
+      </div>
+
       {/* Station 1: 24-Hour Midnight Hustle Heatmap */}
       <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
@@ -139,6 +152,7 @@ export default function LifeAuditor({ receipts = [] }) {
               Hourly frequency of receipts, transit stamps, and late-night digital activities.
             </p>
           </div>
+
           <span className="px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 font-mono text-[11px] font-semibold border border-amber-500/20 self-start sm:self-auto">
             Notice the 1 AM – 3 AM Late-Night Spike
           </span>

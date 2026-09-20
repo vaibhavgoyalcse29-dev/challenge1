@@ -13,7 +13,8 @@ import DatasetUploader from './components/DatasetUploader';
 import ReceiptModal from './components/ReceiptModal';
 import MemoryCursor from './components/MemoryCursor';
 import PatternLab from './components/PatternLab';
-import defaultDataset from './data/dataset.json';
+import AnalyticsSummary from './components/AnalyticsSummary';
+import defaultDataset from './data/enrichedDataset';
 
 import ParallaxBackground from './ParallaxBackground';
 import './glass-parallax.css';
@@ -147,6 +148,7 @@ export default function App() {
             </section>
           )}
           {currentMode === 'roll' && <PatternLab onModeChange={setCurrentMode} />}
+          {currentMode === 'roll' && <AnalyticsSummary receipts={receipts} />}
 
           <AnimatePresence mode="wait">
             <motion.div

@@ -15,6 +15,7 @@ const copy = (source, target) => {
   ['ScrollReveal.jsx', 'src/components/ScrollReveal.jsx'],
   ['MemoryCursor.jsx', 'src/components/MemoryCursor.jsx'],
   ['PatternLab.jsx', 'src/components/PatternLab.jsx'],
+  ['AnalyticsSummary.jsx', 'src/components/AnalyticsSummary.jsx'],
   ['CinematicReplay.jsx', 'src/components/CinematicReplay.jsx'],
   ['ConstellationGraph.jsx', 'src/components/ConstellationGraph.jsx'],
   ['DatasetUploader.jsx', 'src/components/DatasetUploader.jsx'],
@@ -29,6 +30,8 @@ const copy = (source, target) => {
   ['dataset.json', 'src/data/dataset.json'],
   ['storyChapters.js', 'src/data/storyChapters.js'],
   ['storyConnections.js', 'src/data/storyConnections.js'],
+  ['enrichedDataset.js', 'src/data/enrichedDataset.js'],
+  ['behavioralSynthesizer.js', 'src/data/behavioralSynthesizer.js'],
   ['formatters.js', 'src/utils/formatters.js'],
   ['soundEffects.js', 'src/utils/soundEffects.js']
 ].forEach(([source, target]) => copy(source, target));

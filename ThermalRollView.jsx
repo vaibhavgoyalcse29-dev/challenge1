@@ -15,7 +15,8 @@ import {
   ArrowUpDown,
   LayoutGrid,
   Scroll,
-  RotateCcw
+  RotateCcw,
+  SearchX
 } from 'lucide-react';
 import ReceiptCard from './ReceiptCard';
 import ScrollReveal from '../ScrollReveal';
@@ -351,8 +352,10 @@ export default function ThermalRollView({ receipts = [], onInspect }) {
       {/* Receipt Output Container */}
       {filteredReceipts.length === 0 ? (
         <div className="bg-slate-900/40 border border-dashed border-slate-800 rounded-2xl p-12 text-center">
-          <p className="text-slate-400 font-mono text-sm mb-2">
-            No receipts matched this query.
+          <SearchX className="mx-auto mb-3 h-8 w-8 text-amber-400" />
+          <p className="text-white font-semibold text-sm mb-2">No moments found in this slice of the archive.</p>
+          <p className="text-slate-400 font-mono text-xs mb-4">
+            {searchTerm ? `Nothing matches “${searchTerm}”.` : 'Try widening the year, mood, or facet filters.'}
           </p>
           <button
             onClick={handleResetFilters}
