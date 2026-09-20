@@ -97,6 +97,47 @@ export default function App() {
 
         {/* Main Content Area */}
         <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6">
+          {currentMode === 'roll' && (
+            <section className="mb-8 overflow-hidden rounded-3xl border border-amber-300/15 bg-gradient-to-br from-amber-500/12 via-slate-950/70 to-purple-500/10 p-5 shadow-2xl shadow-amber-950/20 sm:p-8" aria-labelledby="journey-title">
+              <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+                <div className="max-w-2xl">
+                  <p className="mb-3 font-mono text-[11px] font-bold uppercase tracking-[0.28em] text-amber-300/80">
+                    A living memory museum
+                  </p>
+                  <h2 id="journey-title" className="text-3xl font-black tracking-tight text-white sm:text-5xl">
+                    Turn everyday spending into a story.
+                  </h2>
+                  <p className="mt-4 max-w-xl text-sm leading-6 text-slate-300 sm:text-base">
+                    Receiptify connects purchases, places, music, and milestones so you can see the human pattern hidden inside your archive.
+                  </p>
+                </div>
+                <button
+                  onClick={() => setIsReplayOpen(true)}
+                  className="inline-flex shrink-0 items-center justify-center rounded-xl bg-amber-400 px-5 py-3 text-sm font-black text-slate-950 shadow-lg shadow-amber-500/20 transition hover:-translate-y-0.5 hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-200 focus:ring-offset-2 focus:ring-offset-slate-950"
+                >
+                  Watch the 60-second story →
+                </button>
+              </div>
+              <div className="mt-7 grid gap-3 sm:grid-cols-3">
+                {[
+                  ['01', 'Browse the roll', 'Find the small moments.'],
+                  ['02', 'Open the web', 'See what each moment connects to.'],
+                  ['03', 'Read the story', 'Understand the life behind the data.']
+                ].map(([step, title, description], index) => (
+                  <button
+                    key={step}
+                    onClick={() => setCurrentMode(['roll', 'constellation', 'story'][index])}
+                    className="group rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-left transition hover:border-amber-300/40 hover:bg-white/[0.08] focus:outline-none focus:ring-2 focus:ring-amber-300/70"
+                  >
+                    <span className="font-mono text-xs font-bold text-amber-300">{step}</span>
+                    <span className="mt-2 block text-sm font-bold text-white">{title}</span>
+                    <span className="mt-1 block text-xs leading-5 text-slate-400">{description}</span>
+                  </button>
+                ))}
+              </div>
+            </section>
+          )}
+
           <AnimatePresence mode="wait">
             <motion.div
               key={currentMode}
