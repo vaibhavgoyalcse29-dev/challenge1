@@ -90,6 +90,15 @@ export default function ThermalRollView({ receipts = [], onInspect }) {
     });
   }, [receipts, selectedFacet, selectedYear, selectedMood, searchTerm, sortBy]);
 
+  const facetCounts = useMemo(() => {
+    const counts = Object.fromEntries(FACETS.map((facet) => [facet, 0]));
+    receipts.forEach((receipt) => {
+      counts[receipt.facet] = (counts[receipt.facet] || 0) + 1;
+    });
+    counts.All = receipts.length;
+    return counts;
+  }, [receipts]);
+
   // Aggregate stats for filtered view
   const { totalFilteredAmount, avgAmount } = useMemo(() => {
     let sum = 0;
@@ -206,9 +215,19 @@ export default function ThermalRollView({ receipts = [], onInspect }) {
           <div className="flex items-center justify-between text-[11px] font-mono text-slate-400">
             <span className="flex items-center gap-1">
               <Filter className="w-3 h-3 text-amber-400" />
-              Activity Facet (9 Types):
+              Activity Facet (7 data-backed types):
             </span>
-            <span>{filteredReceipts.length} matches</span>
+            <span className="flex items-center gap-2">
+              {filteredReceipts.length} matches
+              {(selectedFacet !== 'All' || selectedYear !== 'All' || selectedMood !== 'All' || searchTerm) && (
+                <button
+                  onClick={handleResetFilters}
+                  className="text-amber-300 underline decoration-amber-300/40 underline-offset-2 hover:text-amber-200"
+                >
+                  Clear all
+                </button>
+              )}
+            </span>
           </div>
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
             {FACETS.map((facet) => {
@@ -228,6 +247,9 @@ export default function ThermalRollView({ receipts = [], onInspect }) {
                   }`}
                 >
                   {facet}
+                  <span className={`ml-1 font-mono text-[10px] ${active ? 'text-slate-950/70' : 'text-slate-500'}`}>
+                    {facetCounts[facet]}
+                  </span>
                 </button>
               );
             })}
