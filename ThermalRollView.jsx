@@ -18,7 +18,7 @@ import {
   RotateCcw
 } from 'lucide-react';
 import ReceiptCard from './ReceiptCard';
-import ScrollReveal from './ScrollReveal';
+import ScrollReveal from '../ScrollReveal';
 import { formatCurrency } from '../utils/formatters';
 import { playClickSound } from '../utils/soundEffects';
 

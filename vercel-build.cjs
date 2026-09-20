@@ -11,6 +11,7 @@ const copy = (source, target) => {
   ['index.css', 'src/index.css'],
   ['glass-parallax.css', 'src/glass-parallax.css'],
   ['ParallaxBackground.jsx', 'src/ParallaxBackground.jsx'],
+  ['ScrollReveal.jsx', 'src/ScrollReveal.jsx'],
   ['ScrollReveal.jsx', 'src/components/ScrollReveal.jsx'],
   ['CinematicReplay.jsx', 'src/components/CinematicReplay.jsx'],
   ['ConstellationGraph.jsx', 'src/components/ConstellationGraph.jsx'],

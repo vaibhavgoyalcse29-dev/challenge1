@@ -12,11 +12,11 @@ import { motion } from "framer-motion";
 export default function ScrollReveal({ children, index = 0, className = "" }) {
   return (
     <motion.div
-      className={className}
-      initial={{ opacity: 0, y: 40 }}
+      className={`scroll-reveal ${className}`.trim()}
+      initial={{ opacity: 0, y: 70, scale: 0.98 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.08 }}
+      viewport={{ once: true, margin: "-12% 0px" }}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: Math.min(index * 0.06, 0.42) }}
     >
       {children}
     </motion.div>
