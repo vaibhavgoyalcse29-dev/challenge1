@@ -26,6 +26,7 @@ const copy = (source, target) => {
   ['ConstellationMap.jsx', 'src/components/ConstellationMap.jsx'],
   ['StoryChapters.jsx', 'src/components/StoryChapters.jsx'],
   ['AiSynthesizerModal.jsx', 'src/components/AiSynthesizerModal.jsx'],
+  ['WelcomePanel.jsx', 'src/components/WelcomePanel.jsx'],
   ['LifeAuditor.jsx', 'src/components/LifeAuditor.jsx'],
   ['PrintableReceipt.jsx', 'src/components/PrintableReceipt.jsx'],
   ['ReceiptCard.jsx', 'src/components/ReceiptCard.jsx'],

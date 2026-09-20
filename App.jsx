@@ -13,6 +13,7 @@ import MemoryCursor from './components/MemoryCursor';
 import PatternLab from './components/PatternLab';
 import AnalyticsSummary from './components/AnalyticsSummary';
 import GuidedTour from './components/GuidedTour';
+import WelcomePanel from './components/WelcomePanel';
 
 import ParallaxBackground from './ParallaxBackground';
 import './glass-parallax.css';
@@ -36,6 +37,7 @@ export default function App() {
   const [isCustomData, setIsCustomData] = useState(false);
   const [isReplayOpen, setIsReplayOpen] = useState(false);
   const [isTourOpen, setIsTourOpen] = useState(false);
+  const [isWelcomeOpen, setIsWelcomeOpen] = useState(true);
 
   const lenisRef = useRef(null);
 
@@ -264,6 +266,15 @@ export default function App() {
             onModeChange={setCurrentMode}
             onReplay={() => setIsReplayOpen(true)}
             onClose={() => setIsTourOpen(false)}
+          />
+        )}
+        {isWelcomeOpen && !isTourOpen && !isReplayOpen && (
+          <WelcomePanel
+            onClose={() => setIsWelcomeOpen(false)}
+            onStartTour={() => {
+              setIsWelcomeOpen(false);
+              setIsTourOpen(true);
+            }}
           />
         )}
 

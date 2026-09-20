@@ -62,11 +62,11 @@ export default function Header({
         <div className="flex items-center gap-2">
           <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
           <span className="font-mono text-emerald-400 uppercase tracking-widest text-[11px] font-semibold">
-            Dataset Live: 2015 – 2018 Archive Loaded
+            LIFE RECEIPTS / PERSONAL ARCHIVE
           </span>
           <span className="hidden sm:inline text-slate-500">•</span>
           <span className="hidden sm:inline text-slate-400 font-mono text-[11px]">
-            Vadodara → Mumbai | 2,461 Micro-Moments
+            Vadodara → Mumbai · 2015–2018 life log
           </span>
         </div>
 
@@ -117,7 +117,7 @@ export default function Header({
                 RECEIPTIFY
               </h1>
               <span className="px-1.5 py-0.5 rounded bg-amber-500/10 border border-amber-500/30 text-amber-400 font-mono text-[10px] font-semibold uppercase tracking-wider">
-                Hackathon Edition
+                Interactive life archive
               </span>
             </div>
             <p className="text-xs text-slate-400">
