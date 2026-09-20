@@ -24,6 +24,71 @@ body,
   background: #0d0b08; /* dark base so glass panels read clearly */
 }
 
+/* A separate cursor layer adds personality without replacing the parallax glow. */
+.memory-cursor {
+  --cursor-size: 34px;
+  position: fixed;
+  left: var(--cursor-x);
+  top: var(--cursor-y);
+  z-index: 80;
+  width: var(--cursor-size);
+  height: var(--cursor-size);
+  margin: -17px 0 0 -17px;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  mix-blend-mode: screen;
+}
+
+.memory-cursor-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.memory-cursor-pressed {
+  transform: scale(1.45);
+}
+
+.memory-cursor-core {
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  background: #fbbf24;
+  box-shadow: 0 0 14px #f59e0b, 0 0 30px rgba(245, 158, 11, 0.6);
+}
+
+.memory-cursor-orbit {
+  position: absolute;
+  inset: 2px;
+  border: 1px solid rgba(253, 230, 138, 0.8);
+  border-radius: 50%;
+}
+
+.memory-cursor-orbit-one {
+  animation: cursor-orbit 2.4s linear infinite;
+}
+
+.memory-cursor-orbit-two {
+  inset: 7px -3px;
+  border-color: rgba(52, 211, 153, 0.7);
+  animation: cursor-orbit 1.5s linear infinite reverse;
+}
+
+.memory-cursor-label {
+  position: absolute;
+  left: 26px;
+  top: 15px;
+  color: #fde68a;
+  font: 700 8px/1 ui-monospace, monospace;
+  letter-spacing: 0.12em;
+  text-shadow: 0 0 8px #f59e0b;
+}
+
+@keyframes cursor-orbit {
+  to { transform: rotate(360deg); }
+}
+
 /* ---------- Parallax background layers ---------- */
 
 .parallax-root {
@@ -223,6 +288,9 @@ body,
 /* ---------- Mobile ---------- */
 
 @media (max-width: 640px) {
+  .memory-cursor {
+    display: none;
+  }
   .parallax-glow {
     display: none; /* cursor glow is meaningless on touch */
   }

@@ -11,6 +11,7 @@ import LifeAuditor from './components/LifeAuditor';
 import PrintableReceipt from './components/PrintableReceipt';
 import DatasetUploader from './components/DatasetUploader';
 import ReceiptModal from './components/ReceiptModal';
+import MemoryCursor from './components/MemoryCursor';
 import defaultDataset from './data/dataset.json';
 
 import ParallaxBackground from './ParallaxBackground';
@@ -66,6 +67,7 @@ export default function App() {
     // and sits fixed behind everything (z-0). Everything below is z-10.
     <div className="min-h-screen bg-transparent text-slate-100 flex flex-col font-sans selection:bg-amber-500 selection:text-slate-950 relative">
       <ParallaxBackground />
+      <MemoryCursor />
 
       <div className="relative z-10 flex flex-col min-h-screen">
         {/* Global Header */}
@@ -134,6 +136,12 @@ export default function App() {
                     <span className="mt-1 block text-xs leading-5 text-slate-400">{description}</span>
                   </button>
                 ))}
+              </div>
+              <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-white/10 pt-4 font-mono text-[10px] uppercase tracking-[0.16em] text-slate-500">
+                <span><b className="text-amber-300">2,461</b> moments indexed</span>
+                <span><b className="text-emerald-300">9</b> activity facets</span>
+                <span><b className="text-purple-300">4</b> story chapters</span>
+                <span className="flex items-center gap-1.5 text-emerald-300"><i className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" /> correlation engine online</span>
               </div>
             </section>
           )}

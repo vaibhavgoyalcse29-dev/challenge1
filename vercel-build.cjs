@@ -13,6 +13,7 @@ const copy = (source, target) => {
   ['ParallaxBackground.jsx', 'src/ParallaxBackground.jsx'],
   ['ScrollReveal.jsx', 'src/ScrollReveal.jsx'],
   ['ScrollReveal.jsx', 'src/components/ScrollReveal.jsx'],
+  ['MemoryCursor.jsx', 'src/components/MemoryCursor.jsx'],
   ['CinematicReplay.jsx', 'src/components/CinematicReplay.jsx'],
   ['ConstellationGraph.jsx', 'src/components/ConstellationGraph.jsx'],
   ['DatasetUploader.jsx', 'src/components/DatasetUploader.jsx'],
