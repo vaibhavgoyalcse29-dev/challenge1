@@ -16,6 +16,7 @@ const copy = (source, target) => {
   ['MemoryCursor.jsx', 'src/components/MemoryCursor.jsx'],
   ['PatternLab.jsx', 'src/components/PatternLab.jsx'],
   ['AnalyticsSummary.jsx', 'src/components/AnalyticsSummary.jsx'],
+  ['GuidedTour.jsx', 'src/components/GuidedTour.jsx'],
   ['CinematicReplay.jsx', 'src/components/CinematicReplay.jsx'],
   ['ConstellationGraph.jsx', 'src/components/ConstellationGraph.jsx'],
   ['DatasetUploader.jsx', 'src/components/DatasetUploader.jsx'],

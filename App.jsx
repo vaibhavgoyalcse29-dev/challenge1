@@ -14,6 +14,7 @@ import ReceiptModal from './components/ReceiptModal';
 import MemoryCursor from './components/MemoryCursor';
 import PatternLab from './components/PatternLab';
 import AnalyticsSummary from './components/AnalyticsSummary';
+import GuidedTour from './components/GuidedTour';
 import defaultDataset from './data/enrichedDataset';
 
 import ParallaxBackground from './ParallaxBackground';
@@ -25,6 +26,7 @@ export default function App() {
   const [inspectedReceipt, setInspectedReceipt] = useState(null);
   const [isCustomData, setIsCustomData] = useState(false);
   const [isReplayOpen, setIsReplayOpen] = useState(false);
+  const [isTourOpen, setIsTourOpen] = useState(false);
 
   const lenisRef = useRef(null);
 
@@ -120,6 +122,12 @@ export default function App() {
                   className="inline-flex shrink-0 items-center justify-center rounded-xl bg-amber-400 px-5 py-3 text-sm font-black text-slate-950 shadow-lg shadow-amber-500/20 transition hover:-translate-y-0.5 hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-200 focus:ring-offset-2 focus:ring-offset-slate-950"
                 >
                   Watch the 60-second story →
+                </button>
+                <button
+                  onClick={() => setIsTourOpen(true)}
+                  className="inline-flex shrink-0 items-center justify-center rounded-xl border border-cyan-300/30 bg-cyan-300/10 px-5 py-3 text-sm font-black text-cyan-200 transition hover:-translate-y-0.5 hover:bg-cyan-300/20 focus:outline-none focus:ring-2 focus:ring-cyan-200 focus:ring-offset-2 focus:ring-offset-slate-950"
+                >
+                  Start guided tour <span className="ml-2">↗</span>
                 </button>
               </div>
               <div className="mt-7 grid gap-3 sm:grid-cols-3">
@@ -217,6 +225,13 @@ export default function App() {
           <CinematicReplay
             onExit={() => setIsReplayOpen(false)}
             onOpenStory={() => setCurrentMode('story')}
+          />
+        )}
+        {isTourOpen && (
+          <GuidedTour
+            onModeChange={setCurrentMode}
+            onReplay={() => setIsReplayOpen(true)}
+            onClose={() => setIsTourOpen(false)}
           />
         )}
 
