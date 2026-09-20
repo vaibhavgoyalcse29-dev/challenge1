@@ -276,7 +276,7 @@ export default function ConstellationGraph({ onInspectReceipt }) {
 
   return (
     <section className="space-y-6 animate-in fade-in duration-300">
-      {/* Banner / Explanation for Hackathon Judges */}
+      {/* Banner / Explanation for the connection map */}
       <div className="bg-gradient-to-r from-amber-500/15 via-purple-500/10 to-emerald-500/15 border border-slate-800 rounded-2xl p-5 backdrop-blur-md">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
@@ -288,7 +288,7 @@ export default function ConstellationGraph({ onInspectReceipt }) {
                 The Connection Constellation
               </h2>
               <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-[10px] font-mono font-semibold uppercase">
-                Core Requirement Solved
+                Life pattern mapped
               </span>
             </div>
             <p className="text-xs text-slate-300 mt-1 max-w-2xl leading-relaxed">
@@ -378,7 +378,7 @@ export default function ConstellationGraph({ onInspectReceipt }) {
           <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-mono uppercase tracking-widest text-slate-400 font-semibold">
-                Story Arc Dossier
+                Story arc details
               </span>
               <span 
                 className="px-2 py-0.5 rounded text-[10px] font-mono font-bold"
@@ -451,7 +451,7 @@ export default function ConstellationGraph({ onInspectReceipt }) {
 
               {connectedNodes.length > 0 && (
                 <div className="pt-2 border-t border-dashed border-zinc-400 space-y-2">
-                  <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-500">Secret connections detected</p>
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-zinc-500">Moments connected by pattern</p>
                   {connectedNodes.slice(0, 3).map(({ node, label }) => (
                     <div key={node.id} className="flex items-start gap-2 rounded-md bg-amber-100/70 px-2 py-1.5 text-[10px] leading-snug text-zinc-700">
                       <span aria-hidden="true">⚡</span>

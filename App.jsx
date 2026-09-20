@@ -177,7 +177,7 @@ export default function App() {
                 <span><b className="text-amber-300">2,461</b> moments indexed</span>
                 <span><b className="text-emerald-300">9</b> activity facets</span>
                 <span><b className="text-purple-300">4</b> story chapters</span>
-                <span className="flex items-center gap-1.5 text-emerald-300"><i className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" /> correlation engine online</span>
+                <span className="flex items-center gap-1.5 text-emerald-300"><i className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" /> patterns ready to explore</span>
               </div>
             </section>
           )}

@@ -30,7 +30,7 @@ export default function AnalyticsSummary({ receipts = [] }) {
   return (
     <section className="analytics-summary mb-8" aria-labelledby="analytics-title">
       <div className="analytics-summary-head">
-        <div><p className="analytics-kicker"><BarChart3 size={13} /> Data signal / generated locally</p><h2 id="analytics-title">Your archive, in numbers.</h2></div>
+        <div><p className="analytics-kicker"><BarChart3 size={13} /> Live archive summary</p><h2 id="analytics-title">Your archive, in numbers.</h2></div>
         <button onClick={share} className="analytics-share">{copied ? <Check size={14} /> : <Copy size={14} />}{copied ? 'Copied' : 'Copy share card'}</button>
       </div>
       <div className="analytics-metrics">
@@ -40,7 +40,7 @@ export default function AnalyticsSummary({ receipts = [] }) {
         <div><span>Connected records</span><strong>{summary.connectedRecords.toLocaleString('en-IN')}</strong></div>
       </div>
       <div className="analytics-bars">
-        <div className="analytics-bars-title"><span>Most frequent rhythms</span><span><TrendingUp size={13} /> live calculation</span></div>
+        <div className="analytics-bars-title"><span>Most frequent rhythms</span><span><TrendingUp size={13} /> Updated from your archive</span></div>
         {distribution.map(([label, count]) => <div className="analytics-bar-row" key={label}><span>{label}</span><div><i style={{ width: `${Math.max((count / distribution[0][1]) * 100, 5)}%` }} /></div><b>{count}</b></div>)}
       </div>
     </section>

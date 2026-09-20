@@ -45,7 +45,7 @@ export default function LifeAuditor({ receipts = [] }) {
         <div className="flex items-center gap-2 bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800">
           <ShieldCheck className="w-4 h-4 text-emerald-400" />
           <span className="text-xs font-mono text-emerald-400 font-bold">
-            Auditor Verified: 100% Client-Side
+            Private browser analysis
           </span>
         </div>
       </div>
